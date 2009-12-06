@@ -181,6 +181,9 @@ jQuery.extend({
 				new ActiveXObject("Microsoft.XMLHTTP") :
 				new XMLHttpRequest();
 		},
+		jsonpgen: function(){
+			return "jsonp" + jsc++;
+		},
 		accepts: {
 			xml: "application/xml, text/xml",
 			html: "text/html",
@@ -223,7 +226,7 @@ jQuery.extend({
 
 		// Build temporary JSONP function
 		if ( s.dataType === "json" && (s.data && jsre.test(s.data) || jsre.test(s.url)) ) {
-			jsonp = "jsonp" + jsc++;
+			jsonp = s.jsonpgen();
 
 			// Replace the =? sequence both in the query string and the data
 			if ( s.data ) {
